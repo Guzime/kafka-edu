@@ -13,8 +13,8 @@ import ru.league.kafkaedu.dto.Paperless;
 @RequiredArgsConstructor
 public class PaperlessListener {
 
-    @KafkaListener(topics = "${paperless.topic.sign-result}", containerFactory = "containerFactory")
+    @KafkaListener(topics = "${paperless.topic.json}", containerFactory = "containerFactory")
     public void consume(ConsumerRecord<String, Paperless> payload) {
-        log.info("Consumed message from sign-result topic: {}", payload.value());
+        log.info("Consumed message from paperless.topic.json topic: {}", payload.value());
     }
 }

@@ -10,4 +10,4 @@ spring:
 
 paperless:
   topic:
-    sign-result: paperless.kafka.edu
+    json: paperless.kafka.edu
