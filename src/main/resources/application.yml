@@ -1,1 +1,13 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:29092}
+      group-id: ${CONSUMER_GROUP_ID:document-sign}
+      use-ssl: false
+      truststore-location: ""
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
+paperless:
+  topic:
+    sign-result: paperless.kafka.edu
