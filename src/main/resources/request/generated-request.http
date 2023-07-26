@@ -1,0 +1,7 @@
+POST http://localhost:8080/kafka-edu/produce
+Content-Type: application/json
+
+{
+  "instanceId": "testing",
+  "siebelId": "testing 2"
+}
