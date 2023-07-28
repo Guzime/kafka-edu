@@ -1,0 +1,84 @@
+{
+  "type": "record",
+  "name": "request",
+  "namespace": "ru.rosbank.schema.retail.rdbo.test.paperless.client.task.status",
+  "fields": [
+    {
+      "name": "instanceId",
+      "type": "string"
+    },
+    {
+      "name": "task",
+      "type": {
+        "type": "record",
+        "name": "task",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "taskFactId",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "requestId",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "lifeTime",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "description",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "documents",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "documentsRecord",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "documentType",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "siebel_id",
+      "type": "string"
+    }
+  ]
+}

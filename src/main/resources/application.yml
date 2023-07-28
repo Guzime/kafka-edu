@@ -9,3 +9,4 @@ spring:
 paperless:
   topic:
     json: paperless.kafka.edu
+    avro: paperless.kafka.edu.avro

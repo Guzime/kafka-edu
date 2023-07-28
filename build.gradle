@@ -17,11 +17,15 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://maven.repository.redhat.com/earlyaccess/all/' }
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.apache.avro:avro:1.11.0'
+	implementation 'io.confluent:kafka-avro-serializer:5.3.0'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

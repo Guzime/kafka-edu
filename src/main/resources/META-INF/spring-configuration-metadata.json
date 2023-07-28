@@ -3,6 +3,10 @@
     {
       "name": "paperless.topic.json",
       "type": "java.lang.String"
+    },
+    {
+      "name": "paperless.topic.avro",
+      "type": "java.lang.String"
     }
   ]
 }
