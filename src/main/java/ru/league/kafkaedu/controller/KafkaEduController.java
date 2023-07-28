@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.league.kafkaedu.dto.Paperless;
+import ru.league.kafkaedu.kafka.PaperlessObjectProducer;
 import ru.league.kafkaedu.kafka.PaperlessProducer;
 
 @Slf4j
@@ -17,11 +18,13 @@ import ru.league.kafkaedu.kafka.PaperlessProducer;
 @RequiredArgsConstructor
 public class KafkaEduController {
     private final PaperlessProducer producer;
+    private final PaperlessObjectProducer producerObject;
 
     @PostMapping("/produce")
     public ResponseEntity<String> produce(@RequestBody Paperless paperless) {
         log.info("Accept request {}", paperless);
         producer.pushMessage(paperless);
+        producerObject.pushMessage(paperless);
         return ResponseEntity.ok("Done!");
     }
 }
