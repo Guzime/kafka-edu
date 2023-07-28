@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.league.kafkaedu.dto.Paperless;
 import ru.league.kafkaedu.kafka.PaperlessObjectProducer;
-import ru.league.kafkaedu.kafka.PaperlessProducer;
+import ru.league.kafkaedu.kafka.PaperlessStringProducer;
 
 @Slf4j
 @RestController
 @RequestMapping("/kafka-edu")
 @RequiredArgsConstructor
 public class KafkaEduController {
-    private final PaperlessProducer producer;
+    private final PaperlessStringProducer producer;
     private final PaperlessObjectProducer producerObject;
 
     @PostMapping("/produce")

@@ -11,6 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import ru.league.kafkaedu.dto.Paperless;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class KafkaProducerPaperlessConfig {
 
 
     @Bean(name = "producerFactoryPaperless")
-    public ProducerFactory<String, Object> producerFactory() {
+    public ProducerFactory<String, Paperless> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -32,7 +33,7 @@ public class KafkaProducerPaperlessConfig {
     }
 
     @Bean(name = "kafkaTemplatePaperless")
-    public KafkaTemplate<String, Object> kafkaTemplate(@Qualifier("producerFactoryPaperless") ProducerFactory<String, Object> producerFactory) {
+    public KafkaTemplate<String, Paperless> kafkaTemplate(@Qualifier("producerFactoryPaperless") ProducerFactory<String, Paperless> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 }

@@ -19,7 +19,7 @@ import ru.league.kafkaedu.dto.Paperless;
 public class PaperlessObjectProducer {
 
     @Qualifier("kafkaTemplatePaperless")
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Paperless> kafkaTemplate;
 
     @Value("${paperless.topic.json}")
     private String topic;
@@ -27,10 +27,6 @@ public class PaperlessObjectProducer {
     @SneakyThrows
     public void pushMessage(Paperless paperless) {
         log.info("Produced message Paperless as Object to topic {} : {}", topic, paperless);
-        Message<Paperless> message = MessageBuilder
-                .withPayload(paperless)
-                .setHeader(KafkaHeaders.TOPIC, topic)
-                .build();
-        kafkaTemplate.send(message);
+        kafkaTemplate.send(topic, paperless);
     }
 }

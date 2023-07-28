@@ -13,7 +13,7 @@ import ru.league.kafkaedu.dto.Paperless;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class PaperlessProducer {
+public class PaperlessStringProducer {
 
     @Qualifier("kafkaTemplate")
     private final KafkaTemplate<String, String> kafkaTemplate;
