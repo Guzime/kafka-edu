@@ -2,24 +2,24 @@ POST http://localhost:8080/kafka-edu/produce
 Content-Type: application/json
 
 {
-  "instanceId": "string",
-  "siebelId": "string",
+  "instanceId": "QWE-1987",
+  "siebelId": "ASB-1112",
   "task": {
-    "id": "string",
-    "requestId": "string",
-    "type": "string",
-    "status": "string",
-    "lifeTime": "string",
-    "description": "string"
+    "id": "76543887251",
+    "requestId": "asd91kmnc836KKs82Tas",
+    "type": "payrollL",
+    "status": "NEW",
+    "lifeTime": "323445666",
+    "description": "For testing kafka"
   },
   "documents": [
     {
-      "id": "string",
-      "documentType": "string"
+      "id": "776",
+      "documentType": "PDF"
     },
     {
-      "id": "string",
-      "documentType": "string"
+      "id": "882",
+      "documentType": "PDF"
     }
   ]
 }
