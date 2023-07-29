@@ -38,7 +38,27 @@ public class PaperlessService {
         GenericRecord avroRecord = getGenericRecord();
         avroRecord.put("instanceId", request.getInstanceId());
         avroRecord.put("siebelId", request.getSiebelId());
+        addTask(request, avroRecord);
+        addDocuments(request, avroRecord);
+        return avroRecord;
+    }
 
+    private void addDocuments(Paperless request, GenericRecord avroRecord) {
+        Schema schemaDocuments = avroRecord.getSchema().getField("documents").schema().getElementType();
+        List<GenericRecord> documents = new ArrayList();
+        List<Document> requestDocuments = request.getDocuments();
+        requestDocuments.forEach(doc -> addDocument(schemaDocuments, documents, doc));
+        avroRecord.put("documents", documents);
+    }
+
+    private void addDocument(Schema schemaDocuments, List<GenericRecord> documents, Document document) {
+        GenericRecord doc = new GenericData.Record(schemaDocuments);
+        doc.put("id", document.getId());
+        doc.put("documentType", document.getDocumentType());
+        documents.add(doc);
+    }
+
+    private void addTask(Paperless request, GenericRecord avroRecord) {
         Schema schemaTask = avroRecord.getSchema().getField("task").schema();
         GenericRecord task = new GenericData.Record(schemaTask);
         task.put("id", request.getTask().getId());
@@ -49,20 +69,6 @@ public class PaperlessService {
         task.put("lifeTime", request.getTask().getLifeTime());
         task.put("description", request.getTask().getDescription());
         avroRecord.put("task", task);
-
-        Schema schemaDocuments = avroRecord.getSchema().getField("documents").schema().getElementType();
-        List<GenericRecord> documents = new ArrayList();
-        List<Document> requestDocuments = request.getDocuments();
-
-        for (Document document : requestDocuments) {
-            GenericRecord doc = new GenericData.Record(schemaDocuments);
-            doc.put("id", document.getId());
-            doc.put("documentType", document.getDocumentType());
-            documents.add(doc);
-        }
-
-        avroRecord.put("documents", documents);
-        return avroRecord;
     }
 
     @SneakyThrows
